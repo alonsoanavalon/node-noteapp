@@ -2,10 +2,10 @@ const router = require('express').Router() // ME permite tener un objeto para cr
 
 
 router.get('/', (req, res) => {
-    res.send('Index')
+    res.render('index') // como ya está configurado en app.engine no es necesario establecer formato ni ruta.
 })
 
 router.get('/about', (req, res) => {
-    res.send('About')
+    res.render('about')
 })
 module.exports = router;
