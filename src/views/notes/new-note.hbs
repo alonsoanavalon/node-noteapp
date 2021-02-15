@@ -1,0 +1,21 @@
+
+<form class = "note-form" action="/notes/new-note" method="POST">
+
+    {{#each errors}}
+        <div class="form-error">{{info}}</div>
+    {{/each}}
+
+    {{#if success}}
+        <div class="form-success">{{success}}</div>
+    {{/if}}
+    <h3>Agregar nueva Nota</h3>
+
+    <div class="fields-form">
+    
+        <input type="text" name="name" id="name" placeholder="Name">
+        <textarea name="description" id="description" placeholder="Description"></textarea>
+        <input type="submit"  id="submit">
+    </div>
+
+
+</form>
