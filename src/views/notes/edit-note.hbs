@@ -1,0 +1,14 @@
+        
+<form class="note-form" action="/notes/edit-note/{{toEditNote._id}}?_method=PUT" method="POST">
+    <h3>Edit your note </h3>
+    <div class="fields-form">
+        <input type="hidden" name="_method" value="PUT">
+        <input type="text" name="name" placeholder="Name" value={{toEditNote.name}}>
+         <textarea name="description" placeholder="Description" >{{toEditNote.description}}</textarea>
+        <input type="submit">
+    </div>
+
+</form>
+
+
+    

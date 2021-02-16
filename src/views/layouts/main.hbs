@@ -7,14 +7,19 @@
     <title>Note APP</title>
     {{!-- Bootstrap  --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    {{!-- Font Awesome --}}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    {{!-- CSS --}}
     <link rel="stylesheet" href="/css/styles.css"> {{!-- Acá no necesito poner la ruta explicitamente, ya que la ruta pública la dejamos clara en el index.js, pero no la carpeta y su nombre asi que podemos acceder directamente a todo lo que está dentro asi que entramos directamente --}}
+    
 </head>
 <body>
 
 
 
     <nav class="nav">
-        <h4><a href="/">Node Note-App</a></h4>
+        <h4><a href="/notes">Node Note-App</a></h4>
         <div class="nav-options">
             <a href="/notes/add">Add-Note</a>
             <a href="/users/signup">Sign-Up</a>

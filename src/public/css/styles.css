@@ -123,3 +123,86 @@ body {
 
 /* finish form new note */
 
+
+/* all notes */
+
+.container-notes {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    flex-wrap: wrap;
+  
+}
+
+.note {
+    width:300px;
+    background-color: #fff;
+    margin:.5rem;
+    padding:1rem;
+
+    border-radius:.5rem;
+    text-align: center;
+
+}
+
+.note-info {
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-between;
+    align-items: center;
+}
+
+.note-name,
+.note-description {
+    text-align: center;
+}
+
+.note-name {
+    padding:.5rem;
+}
+
+.note-description {
+    padding-top:1rem;
+    border-top:thin solid #ccc;
+}
+
+.btn-deleteNote {
+
+    border:none;
+    padding:.25rem 1rem;
+    background-color: rgb(208, 82, 82);
+    border-radius:.5rem;
+
+    cursor: pointer;
+    color:#fff;
+
+}
+
+.btn-createNote {
+
+    border:none;
+    padding:.25rem 1rem;
+    background-color: rgb(104, 191, 107);
+    border-radius:.5rem;
+
+    text-decoration: none;
+
+    cursor: pointer;
+    color:#fff;
+
+
+}
+
+.btn-createNote:hover {
+    transition:font-size .1s ease;
+    font-size: 1.025rem;
+}
+
+/* edit form */
+
+.updateNote-form {
+    width:300px;
+    background-color: #fff;
+}
