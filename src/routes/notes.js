@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const Note = require('../models/Note')
+const Note = require('../models/Note') // Se crea la clase Note a partir del SCHEMA que importa /models/Note.js (mongoose Schema)
 
 router.get('/notes', (req, res) => {
     res.send('Notass')
@@ -10,7 +10,7 @@ router.get('/notes/add', (req, res ) => {
 
 })
 
-router.post('/notes/new-note', (req, res ) => {
+router.post('/notes/new-note', async (req, res ) => {
     const {name, description} = req.body
     const errors = []
 
@@ -27,20 +27,17 @@ router.post('/notes/new-note', (req, res ) => {
         }) 
     } else {
 
-        const toCreateNote = async (name, description) => {
-            const newNote = new Note({name, description})
-            const savedNote = newNote.save()
-            return savedNote
-        }
-        toCreateNote(name, description)
-        .then(savedNote => console.log(savedNote))
-        .then(console.log('El archivo ha sido guardado con éxito'))
-        .then(res.render('notes/new-note', {
-            name,
-            success: `La nota "${name}" ha sido creada con éxito`
-          
-        }))
-        .catch(err => console.log(err))
+  
+            const newNote = new Note({name, description}) /* Acá se crea un nuevo objeto clase Nota /schematizada */
+            await newNote.save()
+          /*   res.render('notes/new-note', {
+                success:`La nota "${name}" ha sido añadida exitosamente`
+            }) */
+            res.redirect('/notes')
+           
+ 
+      
+        
         
 
     }
