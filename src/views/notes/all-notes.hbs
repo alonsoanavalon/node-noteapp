@@ -16,7 +16,13 @@
 
             <p class="note-description">{{description}}</p>
 
-            <a href="/notes/delete/{{_id}}" class="btn-deleteNote">Delete</a>
+            <form action="/notes/delete/{{_id}}?_method=DELETE" method="POST">
+
+                <input type="hidden" name="_method" value="DELETE">
+                <input class="btn-deleteNote" type="submit" value="Delete">
+
+            </form>
+  
         </div>
 
         {{else}}
