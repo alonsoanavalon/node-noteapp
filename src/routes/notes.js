@@ -18,8 +18,8 @@ router.post('/notes/new-note', async (req, res ) => {
     const {name, description} = req.body
     const errors = []
 
-    if (!name) errors.push({info:'No se ha ingresado un nombre'})
-    if (!description) errors.push({info:'No se ha ingresado una descripcion'})
+    if (!name) errors.push({error:'No se ha ingresado un nombre'})
+    if (!description) errors.push({error:'No se ha ingresado una descripcion'})
 
     if (errors.length > 0) {
         res.render('notes/new-note', {
@@ -30,7 +30,9 @@ router.post('/notes/new-note', async (req, res ) => {
     } else {
         const newNote = new Note({name, description}) /* Acá se crea un nuevo objeto clase Nota /schematizada */
         await newNote.save()
-        req.flash('success_msg', 'Note Added Succesfully')
+        req.flash('success_msg', 'Note Added Succesfully') // se crea el mensaje en la proxima ventana a abrir?? con render podria hacerlo tmb
+
+
     /*       res.render('notes/new-note', {
          success:`La nota "${name}" ha sido añadida exitosamente`
         }) */
