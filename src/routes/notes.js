@@ -1,20 +1,20 @@
 const router = require('express').Router()
 const Note = require('../models/Note') // Se crea la clase Note a partir del SCHEMA que importa /models/Note.js (mongoose Schema)
-
+const { isAuthenticated } = require('../helpers/out')
 /* Renderizamos todas las notas existentes en  /allnotes */
-router.get('/notes', async (req, res) => {
-    const notes = await Note.find().sort({date:"desc"})
+router.get('/notes', isAuthenticated, async (req, res) => {
+    const notes = await Note.find({"user":req.user.id}).sort({date:"desc"})
     res.render('notes/all-notes', {
         notes
     })
 })
 /* La vista ADD renderizará un formulario para agregar nueva nota */
-router.get('/notes/add', (req, res ) => {
+router.get('/notes/add',isAuthenticated, (req, res ) => {
     res.render('notes/new-note')
 
 })  
     /* Agregar nota */
-router.post('/notes/new-note', async (req, res ) => {
+router.post('/notes/new-note', isAuthenticated, async (req, res ) => {
     const {name, description} = req.body
     const errors = []
 
@@ -29,6 +29,7 @@ router.post('/notes/new-note', async (req, res ) => {
         }) 
     } else {
         const newNote = new Note({name, description}) /* Acá se crea un nuevo objeto clase Nota /schematizada */
+        newNote.user = req.user.id; //es el objeto que crea passport al logearse
         await newNote.save()
         req.flash('success_msg', 'Note Added Succesfully') // se crea el mensaje en la proxima ventana a abrir?? con render podria hacerlo tmb
 
@@ -43,7 +44,7 @@ router.post('/notes/new-note', async (req, res ) => {
 })
 
         /* Redireccionar al formulario para INICIAR editado de nota */
-router.get('/notes/edit/:id', async (req, res) => {
+router.get('/notes/edit/:id', isAuthenticated, async (req, res) => {
 
     const toEditNote = await Note.findById(req.params.id)
 
@@ -53,7 +54,7 @@ router.get('/notes/edit/:id', async (req, res) => {
   
 })
 /* La edicion esta siendo realizada */
-router.put('/notes/edit-note/:id', async (req, res) => {
+router.put('/notes/edit-note/:id', isAuthenticated, async (req, res) => {
     const {name, description} = req.body
     await Note.findByIdAndUpdate(req.params.id, {"name":name, "description":description}) 
     req.flash('success_msg', 'Note updated successfully')
@@ -65,7 +66,7 @@ router.put('/notes/edit-note/:id', async (req, res) => {
      res.redirect('/notes')
 }) */ 
 
-router.delete('/notes/delete/:id', async (req, res) => {
+router.delete('/notes/delete/:id', isAuthenticated,  async (req, res) => {
     await Note.findByIdAndDelete(req.params.id)
     req.flash('success_msg', "La nota ha sido eliminada correctamente")
     res.redirect('/notes')

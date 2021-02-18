@@ -6,10 +6,14 @@ const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-acce
 const methodOverride = require('method-override')
 const session = require('express-session')
 const flash = require('connect-flash') // Permite enviar mensajes entre multiples vistas, cuando agregamos o cuialquier cosa con dato mostramos mensaje a usuario, viene despues del session
+const passport = require('passport')
+
+
 
                 // initialization
 const app = express(); // servidor funcionando
 require('./database') // database funcionando
+require('./config/passport')
 
                 // Settings
 
@@ -39,6 +43,8 @@ app.use(session({
     saveUninitialized: true
 })) // Con esto, express me permite autenticar al usuario y almacenar datos temporalmente
 
+app.use(passport.initialize())
+app.use(passport.session())
 app.use(flash())
 
                 // Variables globales (datos que toda nuestra apk tenga accesible)
@@ -46,6 +52,8 @@ app.use((req,res,next) => {
 
     res.locals.success_msg = req.flash('success_msg')
     res.locals.error_msg = req.flash('error_msg')
+    res.locals.error = req.flash('error')
+    res.locals.user = req.user || null;
 
     next()
 })

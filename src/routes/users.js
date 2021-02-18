@@ -1,9 +1,21 @@
 const router = require('express').Router() // ME permite tener un objeto para crear rutas
 const User = require('../models/Users')
+const passport = require('passport')
 
 router.get('/users/signin', (req, res) => {
     res.render('users/signin')
 })
+
+router.get('/users/logout', (req, res) => {
+    req.logOut();
+    res.redirect('/')
+})
+
+router.post('/users/signin', passport.authenticate('local', {
+    successRedirect:'/notes',
+    failureRedirect:'/users/signin',
+    failureFlash:true
+}))
 
 router.get('/users/signup', (req, res) => {
     res.render('users/signup')

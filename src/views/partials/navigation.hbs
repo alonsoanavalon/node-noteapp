@@ -1,0 +1,14 @@
+    <nav class="nav">
+        <h4><a href="/notes">Node Note-App</a></h4>
+        <div class="nav-options">
+            {{#if user}}
+            <a href="/notes/add">Add-Note</a>
+            <a href="/users/logout">Logout</a>
+          
+
+            {{else}}
+            <a href="/users/signup">Sign-Up</a>
+            <a href="/users/signin">Sign-In</a>
+            {{/if}}
+        </div>
+    </nav>

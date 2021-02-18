@@ -1,6 +1,8 @@
+
 <div class="container-notes">
-      
+
     {{#each notes}}
+     
         <div class="note">
             
             <div class="note-info">
@@ -27,6 +29,7 @@
 
         {{else}}
         <div class="note">
+            <h1>Hello {{user.name}}</h1>
           <div class="note-name">There are no notes yet</div>
           <a class = "btn-createNote"href="/notes/add"> Create a new one !</a>
         </div>

@@ -17,15 +17,8 @@
 <body>
 
 
+    {{>navigation}}
 
-    <nav class="nav">
-        <h4><a href="/notes">Node Note-App</a></h4>
-        <div class="nav-options">
-            <a href="/notes/add">Add-Note</a>
-            <a href="/users/signup">Sign-Up</a>
-            <a href="/users/signin">Sign-In</a>
-        </div>
-    </nav>
 
     <main class ="main container">
         {{> messages }} {{!-- En la config ya pusimos donde esta partials asi que no necesitamos --}}
@@ -34,11 +27,7 @@
 
     </main>
 
-  
-    
+  {{>footer}}
 
-    <footer class="footer">
-        <h4>Aplicacion realizada por <a href="https://github.com/k3yzen">Keyzen</a></h4>
-    </footer> 
 </body>
 </html>

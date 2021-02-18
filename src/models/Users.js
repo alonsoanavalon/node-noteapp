@@ -23,6 +23,10 @@ const UserSchema = new Schema ({
         default: Date.now()
     }
 })
+
+                                    /*  OJO */
+        /* Los mètodos no son de la clase en si, sino de las instancias de las clases, me puede dar error de "NO ES UNA FUNCION" */
+
 /* Esta funcion la ocuparemos cuando el usuario se REGISTRE */
 UserSchema.methods.encryptPassword = async (password) => {
     const salt = await bcrypt.genSalt(10) // un hash de 10 caracteres
